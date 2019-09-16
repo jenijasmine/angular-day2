@@ -1,0 +1,17 @@
+<div>
+    <h3>Weather data component</h3>
+    <div>
+        <label>
+            Enter city name:
+            <input type="text" [(ngModel)]="city">
+        </label>
+        <br>
+        <button (click)="getweatherData()">Get Weather data</button>
+    </div>
+    <div *ngIf="weatherData">
+        City: {{city}}<br>
+        Current Temperature: {{weatherData.curr_temp}}<br>
+        Minimum temperature: {{weatherData.min_temp}}<br>
+        Maximum temperature: {{weatherData.max_temp}}
+    </div>
+    </div>

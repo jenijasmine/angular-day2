@@ -1,0 +1,112 @@
+<div>
+    <h2>List of heroes and Ratings</h2>
+    <table class="table table-grey table-striped table-hover">
+        <thead class="table table-dark">
+            <tr>
+
+                <th>
+                    <div>Name</div>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-primary" (click)="sortList('name','ascending')">
+                            <i class="fa fa-chevron-circle-up"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="sortList('name','descending')">
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="resetList()">
+                            <i class="fa fa-minus-circle"></i>
+                        </button>
+                    </div>
+                </th>
+                <th>
+                    <div>City</div>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-primary" (click)="sortList('city','ascending')">
+                            <i class="fa fa-chevron-circle-up"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="sortList('city','descending')">
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="resetList()">
+                            <i class="fa fa-minus-circle"></i>
+                        </button>
+                    </div>
+                </th>
+                <th>
+                    <div>Rating</div>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-primary" (click)="sortList('rating','ascending')">
+                            <i class="fa fa-chevron-circle-up"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="sortList('rating','descending')">
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="resetList()">
+                            <i class="fa fa-minus-circle"></i>
+                        </button>
+                    </div>
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let actor of actorlist; index as n" (dblclick)="editActor(n)" (keyup)="handleKey($event, n)">
+                <td>
+                    <span *ngIf="n !== selectedIndex">
+                        {{ actor.name }}
+                    </span>
+                    <span *ngIf="n === selectedIndex">
+                        <input type="text" [(ngModel)]="actor.name" name="ename">
+                    </span>
+                </td>
+
+                <td>
+                    <span *ngIf="n !== selectedIndex">
+                        {{ actor.city }}
+                    </span>
+                    <span *ngIf="n === selectedIndex">
+                        <input type="text" [(ngModel)]="actor.city" name="ecity">
+                    </span>
+                </td>
+
+
+                <td>
+                    <span *ngIf="n !== selectedIndex">
+                        {{ actor.rating }}
+                    </span>
+                    <span *ngIf="n === selectedIndex">
+                        <input type="text" [(ngModel)]="actor.rating" name="erating">
+                    </span>
+                </td>
+                <td>
+                    <span *ngIf="n !== selectedIndex">
+                        <button class="btn btn-primary" (click)="editActor(n)"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-danger" (click)="deleteActor(n)"><i class="fa fa-trash"></i></button>
+                    </span>
+                    <span *ngIf="n === selectedIndex">
+                        <button class="btn btn-success" (click)="saveActor(n)"><i class="fa fa-save"></i></button>
+                        <button class="btn btn-secondary" (click)="cancelActor(n)"><i class="fa fa-undo"></i></button>
+                    </span>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="addActor">
+        <h5>Add actor</h5>
+        <label>
+            Name: <input type="text" name="name" [(ngModel)]="newActor.name">
+        </label>
+        <hr>
+        <label>
+            City: <input type="text" name="city" [(ngModel)]="newActor.city">
+        </label>
+        <hr>
+        <label>
+            Rating: <input type="number" name="rating" [(ngModel)]="newActor.rating">
+        </label>
+        <hr>
+        <button (click)="addActor()">Add</button>
+    </div>
+</div>

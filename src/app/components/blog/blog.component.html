@@ -1,0 +1,14 @@
+<div>
+    <h2>List of posts</h2>
+    <div class="card mb-2" *ngFor="let post of blogPosts">
+        <div class="card-header">
+            {{post.title}}
+        </div>
+        <div class="card-title">
+           ID: {{post.id}}
+        </div>
+        <div class="card-body">
+            {{ post.body }}
+        </div>
+    </div>
+</div>
